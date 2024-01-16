@@ -19,10 +19,10 @@ void list_linkedlist(void)
 {
 	struct my_list *current_node;
 
-    // Iterate through the Linked List and print data to kernel log
-    list_for_each_entry(current_node, &head_node, list) {
+	// Iterate through the Linked List and print data to kernel log
+	list_for_each_entry(current_node, &head_node, list) {
 		pr_cont("%d - ", current_node->data); // Use pr_cont instead of pr_info to continues a previous log message in the same line.
-    }
+	}
 }
 
 static ssize_t add_to_linkedlist(struct file *filp, const char __user *buff, size_t len, loff_t *off)
@@ -53,7 +53,7 @@ static ssize_t add_to_linkedlist(struct file *filp, const char __user *buff, siz
 
 static ssize_t remove_from_linkedlist(struct file *filp, const char __user *buff, size_t len, loff_t *off)
 {
-    int value;
+	int value;
 	struct my_list *current_node, *tmp;
 
 	if(!kstrtoint_from_user(buff, len, 10, &value)) {
@@ -95,7 +95,7 @@ static int __init ModuleInit(void)
 
 	//Can be checked whether it was fail or success but I did not
 	proc_create("add", 0666, my_linked_list_folder, &add_fops);
-    proc_create("remove", 0666, my_linked_list_folder, &remove_fops);
+	proc_create("remove", 0666, my_linked_list_folder, &remove_fops);
 
 	pr_info("LinkedList Module inserted");
 	return 0;
