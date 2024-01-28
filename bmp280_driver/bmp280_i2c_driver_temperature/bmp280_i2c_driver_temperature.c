@@ -221,9 +221,9 @@ static void __exit ModuleExit(void)
 	i2c_unregister_device(bmp280_i2c_client);
 	i2c_del_driver(&bmp280_i2c_driver);
 	cdev_del(&my_cdev);
-    device_destroy(dev_class, dev);
-    class_destroy(dev_class);
-    unregister_chrdev_region(dev, 1);
+	device_destroy(dev_class, dev);
+	class_destroy(dev_class);
+	unregister_chrdev_region(dev, 1);
 }
 
 module_init(ModuleInit);
